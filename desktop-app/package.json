@@ -1,0 +1,77 @@
+{
+  "name": "financeit",
+  "version": "1.0.0",
+  "description": "Income & Expense Tracker",
+  "main": "dist/main/main.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:renderer\" \"npm run dev:main\"",
+    "dev:renderer": "vite",
+    "dev:main": "tsc -p tsconfig.main.json && electron .",
+    "build:renderer": "vite build",
+    "build:main": "tsc -p tsconfig.main.json",
+    "build": "npm run build:renderer && npm run build:main",
+    "start": "electron .",
+    "package": "electron-builder"
+  },
+  "dependencies": {
+    "pg": "^8.13.0"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.11.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^9.1.0",
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.0",
+    "postcss": "^8.4.49",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "recharts": "^3.8.0",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.7.0",
+    "vite": "^6.0.0"
+  },
+  "build": {
+    "appId": "com.financeit.tracker",
+    "productName": "FinanceIT Tracker",
+    "files": [
+      "dist/**/*",
+      "node_modules/pg/**/*",
+      "node_modules/pg-pool/**/*",
+      "node_modules/pg-protocol/**/*",
+      "node_modules/pg-types/**/*",
+      "node_modules/pg-int8/**/*",
+      "node_modules/pg-connection-string/**/*",
+      "node_modules/pgpass/**/*",
+      "node_modules/postgres-array/**/*",
+      "node_modules/postgres-bytea/**/*",
+      "node_modules/postgres-date/**/*",
+      "node_modules/postgres-interval/**/*",
+      "node_modules/buffer-writer/**/*",
+      "node_modules/packet-reader/**/*",
+      "node_modules/obuf/**/*",
+      "node_modules/split2/**/*"
+    ],
+    "asar": true,
+    "extraResources": [
+      {
+        "from": "../docker-compose.yml",
+        "to": "docker-compose.yml"
+      },
+      {
+        "from": "../docker",
+        "to": "docker",
+        "filter": ["**/*"]
+      }
+    ],
+    "win": {
+      "target": "portable",
+      "icon": "resources/icon.png"
+    },
+    "portable": {
+      "artifactName": "FinanceIT-Tracker.exe"
+    }
+  }
+}
