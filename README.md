@@ -20,7 +20,7 @@
 ### 1. Клонирование репозитория
 
 ```bash
-git clone https://github.com/<your-username>/financeit.git
+git clone https://github.com/s1eepyXTRA/financeit.git
 cd financeit
 ```
 
